@@ -1,56 +1,48 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {Order} from "./entities/order.entity";
+import {InjectRepository} from "@nestjs/typeorm";
+import {Repository} from "typeorm";
+import {CreateOrderDto} from "./dto/create-order.dto";
+import {UpdateOrderDto} from "./dto/update-order.dto";
 
 @Injectable()
 export class OrdersService {
-    private orders: Order[] = [
-        {
-            id: 1,
-            status: 'pending',
-            customer: 'mickey mouse',
-            orderContent: ['sample 1', 'sample 2', 'sample 3'],
-            totalPrice: 25,
-            totalPaid: 0,
-            deliverSlot: '03:00PM'
-        },
-        {
-            id: 2,
-            status: 'pending',
-            customer: 'sirius black',
-            orderContent: ['sample 1', 'sample 2', 'sample 3'],
-            totalPrice: 25.50,
-            totalPaid: 0,
-            deliverSlot: '10:00AM'
-        },
-    ];
+
+    constructor(
+       @InjectRepository(Order)
+       private readonly orderRepository: Repository<Order>,
+    ) {}
 
     findAll() {
-        return this.orders;
+        return this.orderRepository.find();
     }
 
-    findOne(id: string) {
-        const order = this.orders.find(item => item.id === +id);
+    async findOne(id: string) {
+        const order = await this.orderRepository.findOne({where: {id: +id}});
         if (!order) {
             throw new NotFoundException(`Order n°${id} not found`);
         }
         return order;
     }
 
-    create(createOrderDto: any) {
-        this.orders.push(createOrderDto);
+    create(createOrderDto: CreateOrderDto) {
+        const order = this.orderRepository.create(createOrderDto);
+        return this.orderRepository.save(order);
     }
 
-    update(id: string, updateOrderDto: any) {
-        const existingOrder = this.findOne(id)
-        if (existingOrder) {
-            // update existing entity
+    async update(id: string, updateOrderDto: UpdateOrderDto) {
+        const order = await this.orderRepository.preload({
+            id: +id,
+            ...updateOrderDto,
+        });
+        if (!order) {
+            throw new NotFoundException(`Order n°${id} not found`);
         }
+        return this.orderRepository.save(order);
     }
 
-    remove(id: string) {
-        const orderIndex = this.orders.findIndex(item => item.id === +id);
-        if (orderIndex >= 0) {
-            this.orders.splice(orderIndex, 1);
-        }
+    async remove(id: string) {
+      const order = await this.findOne(id);
+      return this.orderRepository.remove(order);
     }
 }
