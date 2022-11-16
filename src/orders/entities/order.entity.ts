@@ -16,8 +16,9 @@ export class Order {
     @ManyToMany(
         type => Product,
         product => product.orders,
+        {cascade: true,}
     )
-    orderContent: string[];
+    orderContent: Product[];
 
     @Column()
     totalPrice: number;

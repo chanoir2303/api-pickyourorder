@@ -1,5 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post, Query} from '@nestjs/common';
 import {OrdersService} from "./orders.service";
+import {PaginationQueryDto} from "../common/dto/pagination-query.dto";
 
 @Controller('orders')
 export class OrdersController {
@@ -8,9 +9,8 @@ export class OrdersController {
 
     // get all orders
     @Get()
-    findAll(@Query() paginationQuery) {
-        const {limit, offset} = paginationQuery;
-        return this.ordersService.findAll();
+    findAll(@Query() paginationQuery: PaginationQueryDto) {
+        return this.ordersService.findAll(paginationQuery);
     }
 
     // get one specific order by id
