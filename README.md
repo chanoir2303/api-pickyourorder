@@ -48,10 +48,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
-
-pickyourorder is an MIT-licensed open source project. It can grow thanks to the team. If you'd like to join, please [contact us](https://twitter.com/chanoir2303).
-
 ## Stay in touch
 
 - Author - [chanoir2303](mailto:chanoir2303@protonmail.com)
