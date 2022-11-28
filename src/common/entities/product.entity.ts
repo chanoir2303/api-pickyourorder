@@ -14,4 +14,13 @@ export class Product {
         order => order.orderContent,
     )
     orders: Order[];
+
+    @Column()
+    description: string;
+
+    @Column()
+    price: number;
+
+    @Column()
+    tva: number;
 }

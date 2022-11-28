@@ -1,6 +1,6 @@
 import {DataSource} from "typeorm";
-import {Product} from "./src/orders/entities/product.entity";
-import {Order} from "./src/orders/entities/order.entity";
+import {Product} from "./src/common/entities/product.entity";
+import {Order} from "./src/common/entities/order.entity";
 import {OrderRefactor1669237864231} from "./src/migrations/1669237864231-OrderRefactor";
 
 export default new DataSource({
