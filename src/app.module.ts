@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrdersModule } from './orders/orders.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import {TypeOrmModule} from "@nestjs/typeorm";
         database: 'postgres',
         autoLoadEntities: true,
         synchronize: true, // disable in prod
-      })
+      }),
+      ProductsModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,7 +1,9 @@
 import {DataSource} from "typeorm";
-import {Product} from "./src/orders/entities/product.entity";
-import {Order} from "./src/orders/entities/order.entity";
-import {OrderRefactor1669237864231} from "./src/migrations/1669237864231-OrderRefactor";
+import {Product} from "./src/common/entities/product.entity";
+import {Order} from "./src/common/entities/order.entity";
+// import {OrderRefactor1669237864231} from "./src/migrations/1669237864231-OrderRefactor";
+import {TestRefactor1670444791910} from "./src/migrations/1670444791910-TestRefactor";
+
 
 export default new DataSource({
     type: 'postgres',
@@ -11,5 +13,5 @@ export default new DataSource({
     password: 'pass123',
     database: 'postgres',
     entities: [Order, Product],
-    migrations: [OrderRefactor1669237864231],
+    migrations: [TestRefactor1670444791910],
 });

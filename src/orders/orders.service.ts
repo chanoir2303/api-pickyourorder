@@ -1,10 +1,10 @@
-import {Inject, Injectable, NotFoundException} from '@nestjs/common';
-import {Order} from "./entities/order.entity";
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {Order} from "../common/entities/order.entity";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
-import {CreateOrderDto} from "./dto/create-order.dto";
-import {UpdateOrderDto} from "./dto/update-order.dto";
-import {Product} from "./entities/product.entity";
+import {CreateOrderDto} from "../common/dto/create-order.dto";
+import {UpdateOrderDto} from "../common/dto/update-order.dto";
+import {Product} from "../common/entities/product.entity";
 import {PaginationQueryDto} from "../common/dto/pagination-query.dto";
 
 @Injectable()
