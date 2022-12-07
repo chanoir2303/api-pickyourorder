@@ -9,7 +9,6 @@
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-  <a href="https://twitter.com/chanoir2303" target="_blank"><img src="https://img.shields.io/twitter/follow/chanoir2303.svg?style=social&label=Follow"></a>
 </p>
 
 ## Description
